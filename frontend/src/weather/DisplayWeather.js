@@ -37,7 +37,7 @@ const CityList = props => {
                         weatherData === null
                             ? 'Select City to view weather'
                             : weatherData === "error"
-                                ? 'Error in fetching weather'
+                                ? 'Error in fetching weather - No Data Found'
                                 : displayData()
                     }
                 </div>
