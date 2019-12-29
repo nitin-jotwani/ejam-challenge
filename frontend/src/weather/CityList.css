@@ -1,0 +1,16 @@
+.addMargin {
+    margin-top: 15px;
+}
+
+.btnWidth {
+    width: 100%;
+}
+
+.columnWidth {
+    width: 50%;
+}
+@media screen and (max-width: 992px) {
+    .addMarginMobile {
+        margin-top: 15px;
+    }
+  }
