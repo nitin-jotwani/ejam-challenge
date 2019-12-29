@@ -9,14 +9,21 @@ const CityList = props => {
     const selectCity = (value) => {
         setSelectedCity(value);
     }
-    const getWeather = () => {
+    const getWeather = async () => {
         if (selectedCity && selectedCity.length) {
-            fetch('https://api.openweathermap.org/data/2.5/weather?q=' + selectedCity + '&appid=ff721161d6d355dc779b8ba2c967e3ee&units=metric')
-                .then(function (response) {
-                    return response.json();
-                }).then(function (data) {
-                    setWeatherData(data)
-                });
+            try {
+                const weatherDataFetch = await fetch('http://localhost:3005/getWeather?city='+selectedCity);
+                const weatherData = await weatherDataFetch.json();
+                setWeatherData(weatherData);
+            } catch (error) {
+                setWeatherData("error");
+            }
+            // fetch('https://api.openweathermap.org/data/2.5/weather?q=' + selectedCity + '&appid=ff721161d6d355dc779b8ba2c967e3ee&units=metric')
+            //     .then(function (response) {
+            //         return response.json();
+            //     }).then(function (data) {
+            //         setWeatherData(data)
+            //     });
         }
     }
     return (

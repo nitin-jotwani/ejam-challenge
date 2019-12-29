@@ -1,17 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './CityList.css';
 import { connect } from 'react-redux'
 
 
 const CityList = props => {
     const { weatherData } = props;
-    const [selectedCity, setSelectedCity] = useState('');
-    const selectCity = (event) => {
-        const selectedCity = event.target.getAttribute('value');
-        console.log(event.target.getAttribute('value'))
-        setSelectedCity(selectedCity);
-    }
-
     const displayData = () => {
         return <React.Fragment>
             <table className="table table-striped table-bordered">
@@ -41,9 +34,11 @@ const CityList = props => {
             <div className="row addMargin">
                 <div className="col-md-12">
                     {
-                        weatherData
-                            ? displayData()
-                            : 'Select City to view weather'
+                        weatherData === null
+                            ? 'Select City to view weather'
+                            : weatherData === "error"
+                                ? 'Error in fetching weather'
+                                : displayData()
                     }
                 </div>
             </div>
